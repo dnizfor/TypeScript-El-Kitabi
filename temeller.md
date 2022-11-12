@@ -83,7 +83,7 @@ Programı yeterince kapsamlı bir şekilde test etmemiş olabiliriz, bu nedenle 
 
 
 
-<figure><img src=".gitbook/assets/Ekran görüntüsü 2022-11-08 235136 (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Ekran görüntüsü 2022-11-08 235136 (1).png" alt=""><figcaption></figcaption></figure>
 
 TypeScript ile yukarıdaki kodu yazdığımızda , daha biz kodumuzu çalıştırmadan , tıpkı yukarıda olduğu gibi , hatayı bize gösterecektir.
 
@@ -144,7 +144,7 @@ Bu, TypeScript'in kod düzenleme için de kullanılabileceği ve tip denetleyici
 
 TypeScript'i destekleyen bir editör, hataları otomatik olarak düzeltmek için "hızlı düzeltmeler", kodu kolayca yeniden düzenlemek için yeniden düzenlemeler ve bir değişkenin değerini atamak veya belirli bir değişkene yapılan tüm referansları bulmak için kullanışlı gezinme özellikleri sunabilir.Tüm bunlar tip denetleyicisinin üzerine inşa edilmiştir ve tamamen çapraz platformdur, [bu nedenle favori editörünüzüm TypeScript desteğine sahip olması muhtemeldir.](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)
 
-### `tsc`, the TypeScript Derleyicisi
+### `tsc`, TypeScript Derleyicisi
 
 Tip kontrolünden daha önce bahsettik . Peki bu kontrolleri kim yapıyor? Bu başlıkta TypeScript derleyicimiz **tsc** ile tanışacağız. Başlamadan önce onu **npm** aracılığıyla indirmeliyiz.
 
@@ -201,4 +201,20 @@ Expected 2 arguments, but got 1.
 ```
 
 TypeScript bize **`greet` ** fonksiyonuna bir argüman eksik verdiğimizi söylüyor . Şimdiye kadar yalnızca standart JavaScript yazdık ve yine de tip denetimi kodumuzdaki sorunları bulabildi. Teşekkürler TypeScript!
+
+### Hata Yayımlamak
+
+Son örnekte kaçırmış olabileceğiniz bir şey var : `hello.js` dosyamız , hata almamıza rağmen güncellendi. Bunun sebebi TypeScrip'in her zaman programcının kendisinden üstün olduğunu varsaymasıdır. Son örnekte de programcının bilip kendisinin bilmediği bir şey olduğunu düşünerek , hata vermesine rağmen , TypeScript kodunu JavaScript koduna çevirdi.
+
+Daha önce de belirttiğimiz gibi; tip denetimi , programınıza gönderilecek değişkenleri sınırlayarak aslında kodunuzun çalışma şeklini sınırlar. Bu durum programınıza yanlış tipte veri gönderilmesini engellemek ve byglardan kaçınmak için harika bir yoldur. Ama bazı durumlarda bu durum pek yararımıza olmayabilir.&#x20;
+
+Diyelim ki kısıtlı bir zamanınız var ve kodunuzu JavaScript'e derlerken tip hataları alıyorsunuz. Fakat derlenen JavaScript programı doğru çalışıyor. Bu durumda TypeScript dosyasını güncellemekle zaman kaybetmeye gerek var mı ?
+
+Elbette, zaman içinde hatalara karşı biraz daha savunmacı olmak ve TypeScript'in biraz daha katı davranmasını isteyebilirsiniz. Bu durumda, **`noEmitOnError` ** derleyici seçeneğini kullanabilirsiniz.
+
+```
+tsc --noEmitOnError hello.ts
+```
+
+Bu **flag** ile artık koddaki herhangi bir tip hatasında kodu JavaScript dosyasına dönüştürmez. Programı yukarıdaki gibi çalıştırdığınızda hello.js dosyasının güncellenmediğini göreceksiniz.
 
