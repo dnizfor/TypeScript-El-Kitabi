@@ -194,7 +194,7 @@ function greet(person, date) {
 greet("Brendan");
 ```
 
-&#x20;Eğer dosyamızı **`tsc hello.ts`**` ``komutuyla tekrar çalıştırırsak komut satırımızda aşağıdaki uyarıyı göreceksiniz.`
+Eğer dosyamızı **tsc hello.ts** komutuyla tekrar çalıştırırsak komut satırımızda aşağıdaki uyarıyı göreceksiniz.
 
 ```
 Expected 2 arguments, but got 1.
@@ -204,7 +204,7 @@ TypeScript bize **`greet` ** fonksiyonuna bir argüman eksik verdiğimizi söyl�
 
 ### Hata Yayımlamak
 
-Son örnekte kaçırmış olabileceğiniz bir şey var : `hello.js` dosyamız , hata almamıza rağmen güncellendi. Bunun sebebi TypeScrip'in her zaman programcının kendisinden üstün olduğunu varsaymasıdır. Son örnekte de programcının bilip kendisinin bilmediği bir şey olduğunu düşünerek , hata vermesine rağmen , TypeScript kodunu JavaScript koduna çevirdi.
+Son örnekte kaçırmış olabileceğiniz bir şey var : **`hello.js` ** dosyamız , hata almamıza rağmen güncellendi. Bunun sebebi TypeScrip'in her zaman programcının kendisinden üstün olduğunu varsaymasıdır. Son örnekte de programcının bilip kendisinin bilmediği bir şey olduğunu düşünerek , hata vermesine rağmen , TypeScript kodunu JavaScript koduna çevirdi.
 
 Daha önce de belirttiğimiz gibi; tip denetimi , programınıza gönderilecek değişkenleri sınırlayarak aslında kodunuzun çalışma şeklini sınırlar. Bu durum programınıza yanlış tipte veri gönderilmesini engellemek ve byglardan kaçınmak için harika bir yoldur. Ama bazı durumlarda bu durum pek yararımıza olmayabilir.&#x20;
 
@@ -216,5 +216,5 @@ Elbette, zaman içinde hatalara karşı biraz daha savunmacı olmak ve TypeScrip
 tsc --noEmitOnError hello.ts
 ```
 
-Bu **flag** ile artık koddaki herhangi bir tip hatasında kodu JavaScript dosyasına dönüştürmez. Programı yukarıdaki gibi çalıştırdığınızda hello.js dosyasının güncellenmediğini göreceksiniz.
+Bu **seçenek  (flag)** ile artık koddaki herhangi bir tip hatasında kodu JavaScript dosyasına dönüştürmez. Programı yukarıdaki gibi çalıştırdığınızda **hello.js** dosyasının güncellenmediğini göreceksiniz.
 
