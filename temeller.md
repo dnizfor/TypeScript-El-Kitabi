@@ -206,7 +206,7 @@ TypeScript bize **`greet` ** fonksiyonuna bir argüman eksik verdiğimizi söyl�
 
 Son örnekte kaçırmış olabileceğiniz bir şey var : **`hello.js` ** dosyamız , hata almamıza rağmen güncellendi. Bunun sebebi TypeScrip'in her zaman programcının kendisinden üstün olduğunu varsaymasıdır. Son örnekte de programcının bilip kendisinin bilmediği bir şey olduğunu düşünerek , hata vermesine rağmen , TypeScript kodunu JavaScript koduna çevirdi.
 
-Daha önce de belirttiğimiz gibi; tip denetimi , programınıza gönderilecek değişkenleri sınırlayarak aslında kodunuzun çalışma şeklini sınırlar. Bu durum programınıza yanlış tipte veri gönderilmesini engellemek ve byglardan kaçınmak için harika bir yoldur. Ama bazı durumlarda bu durum pek yararımıza olmayabilir.&#x20;
+Daha önce de belirttiğimiz gibi; tip denetimi , programınıza gönderilecek değişkenleri sınırlayarak aslında kodunuzun çalışma şeklini sınırlar. Bu durum programınıza yanlış tipte veri gönderilmesini engellemek ve buglardan kaçınmak için harika bir yoldur. Ama bazı durumlarda bu durum pek yararımıza olmayabilir.&#x20;
 
 Diyelim ki kısıtlı bir zamanınız var ve kodunuzu JavaScript'e derlerken tip hataları alıyorsunuz. Fakat derlenen JavaScript programı doğru çalışıyor. Bu durumda TypeScript dosyasını güncellemekle zaman kaybetmeye gerek var mı ?
 
@@ -217,4 +217,95 @@ tsc --noEmitOnError hello.ts
 ```
 
 Bu **seçenek  (flag)** ile artık koddaki herhangi bir tip hatasında kodu JavaScript dosyasına dönüştürmez. Programı yukarıdaki gibi çalıştırdığınızda **hello.js** dosyasının güncellenmediğini göreceksiniz.
+
+### Tip Belirtme
+
+Son örneğimizde insanları selamlayan basit bir fonksiyon yazmıştık. Fakat bu fonksiyonun alacağı argümanlar için herhangi bir tip belitmemiştik. Hadi kodumuza biraz ekleme yapalım ve **date** argümanına **Date** ve **person** parametresi için **string** tipini belirleyelim. Daha sonra **date** argümanına **toDateString()** methodu ile kullanalım.
+
+```ts
+function greet(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+```
+
+Yaptığımız değişiklikle , kodumuzun son halini okuyan birisi **greet** fonksiyonunun **string** veri tipinde **person** argümanı ve **Date** veri tipinde **date** argümanı alacağını açıkça görecektir.
+
+Yaptığımız bu tip atamalarıyla beraber TypeScript, **greet** fonksiyonun yanlış çağrılmış olabileceği durumlarda bize gerekli uyarıları yapacaktır. Örneğin...
+
+```ts
+
+function greet(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+
+greet("Maddison", Date());
+```
+
+Ne? TypeScript ikinci argümanımızda biza aşağıdaki hatayı bildirdi, ama neden?
+
+<figure><img src=".gitbook/assets/Adsız.png" alt=""><figcaption></figcaption></figure>
+
+Buradaki uyarının sebebi JavaScript'te **Date()** fonksiyonun **string** döndürmesidir. Oysa ki **new Date()** bize istediğimiz gibi **Date** tipinde bir veri döndürecektir.
+
+Her neyse , hızlıca bug'ı çözelim.
+
+```ts
+function greet(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+
+greet("Maddison", new Date());
+```
+
+Ayrıca biz tip ataması yapmak için her zaman veri tipi yazmak zorunda değiliz. Çoğu durumda, TypeScript, biz onları atlasak bile,  tanımlanan veri değerinden otomatik olarak tip ataması yapabilir.
+
+```ts
+let msg = "hello there!";
+//  ^?
+```
+
+Yukarıdaki örnekte TypeScript biz veri tipini vermesek bile , değişkenin atanan değerinden bu veri tipini çıkartır.
+
+Bu TypeScript'in bir özelliğidir. Ve eğer değişken değerini hemen atayacaksanız tip açıklaması eklememek daha iyidir.
+
+> Editörünüzde değişkeninin üzerine giderseniz size değişkeninizin tipinin string olduğunu söylecektir.
+
+<figure><img src=".gitbook/assets/Adsız (1).png" alt=""><figcaption></figcaption></figure>
+
+### Tip Belirteçlerinin Silinmesi
+
+Hadi **tsc** derleyicisinin çıktı olarak **greet** fonksiyonuna ne yaptığına bir bakalım.
+
+```ts
+function greet(person, date) {
+    console.log("Hello ".concat(person, ", today is ").concat(date.toDateString(), "!"));
+}
+greet("Maddison", new Date());
+
+```
+
+Burada dikkat etmeniz gereken iki  nokta var :
+
+* **person ve date** argümanlarının tip ataması yok.
+* "**template string**" - ters tikler kullanan string (\`\` \`\`\` karakteri) - düz string'e dönüştürüldü.
+
+İkincisini daha sonra anlatacağımız için şimdilik ilk noktaya odaklanalım.Tip atamaları JavaScript'in (veyaECMAScript'in) bir parçası değildir, bu nedenle saf TypeScript'i çalıştırabilen herhangi bir tarayıcı yoktur.Bu nedenle kodunuzu tarayıcıların çalıştırabilmesi için TypeScript'in her şeyden önce bir derleyiciye ihtiyacı vardır. Derleyici , TypeScript'e özgü kodların çoğunu silerek JavaScript'e dönüştürür.
+
+> Tip açıklamaları kodunuzun çalışma zamanındaki davranışını etkilemez
+
+### Kod Seviyesini Düşürme (Downleveling)
+
+Yukarıdaki bir diğer fark, şablon string'in yeniden yazılmasıydı. Kodumuz bundan&#x20;
+
+```js
+`Hello ${person}, today is ${date.toDateString()}!`;
+```
+
+buna dönüştü
+
+```js
+"Hello " + person + ", today is " + date.toDateString() + "!";
+```
+
+Bu neden oldu?
 
