@@ -309,3 +309,23 @@ buna dönüştü
 
 Bu neden oldu?
 
+Şablon dizeleri, [ECMAScript'in  ](https://tr.wikipedia.org/wiki/ECMAScript),ECMAScript 2015 adlı bir sürümüne ait bir özelliktir.
+
+Varsayılan olarak TypeScript, ECMAScript'in son derece eski bir sürümü olan ES3'ü hedefler. **target** seçeneğini kullanarak biraz daha yeni bir şey seçebilirdik.
+
+Kodumuzu **--target es2015** ile çalıştırmak TypeScript'i ECMAScript 2015'i hedefleyecek şekilde değiştirir, yani kod ECMAScript 2015'in desteklendiği her yerde çalışabilmelidir.
+
+Yani **tsc --target es2015 hello.ts** çalıştırıldığında aşağıdaki çıktı elde edilir:
+
+```
+function greet(person, date) {
+    console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+greet("Maddison", new Date());
+
+```
+
+> Varsayılan hedef ES3 olsa da, mevcut tarayıcıların büyük çoğunluğu ES2015'i desteklemektedir. Bu nedenle çoğu geliştirici, eski tarayıcılarla uyumluluk önemli olmadığı sürece, hedef olarak ES2015 belirleyebilir.
+
+``
+
