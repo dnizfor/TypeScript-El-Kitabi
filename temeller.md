@@ -327,5 +327,22 @@ greet("Maddison", new Date());
 
 > Varsayılan hedef ES3 olsa da, mevcut tarayıcıların büyük çoğunluğu ES2015'i desteklemektedir. Bu nedenle çoğu geliştirici, eski tarayıcılarla uyumluluk önemli olmadığı sürece, hedef olarak ES2015 belirleyebilir.
 
-``
+### Katı Dil Kuralları
+
+TypeScript'e gelen her programcı, bir tip kontrolcüsünde ( type-checker) farklı şeyler arar.
+
+Bazı programcılar, programlarının yalnızca bazı bölümlerini doğrulamaya yardımcı olabilecek daha gevşek bir sistem arıyor. Ki bu TypeScript'in ön tanımlı bir özelliğidir. Çünkü tip tanımlamaları zorunlu değildir. Derleyici tip tanımlaması yapılmış olanları ve çıkarım yapabileceği (değeri tanımlanmış değişkenler ) tipleri denetime tabi tutar ve diğerlerine karışmaz.Potansiyel **`null`/`undefined`** değerleri için herhangi bir denetim yoktur. **tsc** hata vermesine rağmen dosyayı nasıl işliyorsa burada da TypeScript programcının en iyisini bildiğini varsayarak yolunuzdan çekilir.
+
+Eğer bir kodu JavaScript'ten TypeScript'e taşıyorsanız bu mantıklı bir ilk adım olacaktır.
+
+Bunun aksine; birçok kullanıcı TypeScript'in , kodunu doğrulayabildiği kadar doğrulamasını tercih eder ve bu nedenle TypeScript , katı dil ayarları da sunar. Bu ayarlar ile daha katı tip kontrolleri yapabilirsiniz. Bu ayarları ne kadar sıklaştırırsanız TypeScript sizin için o kadar fazla kontrol yapacaktır.Bu biraz fazladan çalışma gerektirebilir, ancak genel olarak uzun vadede daha kapsamlı kontroller sağlar.
+
+Ki mümkün olduğunca bu katı dil kurallarını aktif olarak kullanmalısınız.
+
+TypeScript, açılıp kapatılabilen çeşitli tip denetimi katılık seçeneklerine (flag) sahiptir ve aksi belirtilmediği sürece tüm örneklerimiz bu seçenekler etkinleştirilerek yazılacaktır.
+
+Konsoldaki (CLİ)[`strict`](https://www.typescriptlang.org/tsconfig#strict) seçeneği ( flag ) veya bir [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) hepsini aynı anda açar, ancak bunları ayrı ayrı devre dışı bırakabiliriz. Burada bilmeniz gereken iki önemli seçenek var :&#x20;
+
+* [`noImplicitAny`](https://www.typescriptlang.org/tsconfig#noImplicitAny)&#x20;
+* [`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks)
 
