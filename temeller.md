@@ -126,7 +126,7 @@ announcement.toLocaleLowerCase();
 
 fonksiyon hataları
 
-<figure><img src=".gitbook/assets/Ekran görüntüsü 2022-11-08 235136 (2).png" alt=""><figcaption><p>Veya</p></figcaption></figure>
+<figure><img src=".gitbook/assets/Ekran görüntüsü 2022-11-08 235136 (2) (1).png" alt=""><figcaption><p>Veya</p></figcaption></figure>
 
 Veya basit matematiksel hatalar
 
@@ -140,7 +140,7 @@ Type-checker (tip kontrolcüsü), değişkenler ve diğer özellikler üzerinde 
 
 Bu, TypeScript'in kod düzenleme için de kullanılabileceği ve tip denetleyicisinin siz editörde yazarken hata mesajları gösterebileceği ve kod tamamlama özelliği sağlayabileceği anlamına gelir.&#x20;
 
-<figure><img src=".gitbook/assets/Ekran görüntüsü 2022-11-08 235136.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Ekran görüntüsü 2022-11-08 235136 (2).png" alt=""><figcaption></figcaption></figure>
 
 TypeScript'i destekleyen bir editör, hataları otomatik olarak düzeltmek için "hızlı düzeltmeler", kodu kolayca yeniden düzenlemek için yeniden düzenlemeler ve bir değişkenin değerini atamak veya belirli bir değişkene yapılan tüm referansları bulmak için kullanışlı gezinme özellikleri sunabilir.Tüm bunlar tip denetleyicisinin üzerine inşa edilmiştir ve tamamen çapraz platformdur, [bu nedenle favori editörünüzüm TypeScript desteğine sahip olması muhtemeldir.](https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support)
 
@@ -270,7 +270,7 @@ Bu TypeScript'in bir özelliğidir. Ve eğer değişken değerini hemen atayacak
 
 > Editörünüzde değişkeninin üzerine giderseniz size değişkeninizin tipinin string olduğunu söylecektir.
 
-<figure><img src=".gitbook/assets/Adsız (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Adsız (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Tip Belirteçlerinin Silinmesi
 
@@ -346,3 +346,30 @@ Konsoldaki (CLİ)[`strict`](https://www.typescriptlang.org/tsconfig#strict) seç
 * [`noImplicitAny`](https://www.typescriptlang.org/tsconfig#noImplicitAny)&#x20;
 * [`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks)
 
+### noImplicitAny
+
+Daha önce de bahsettiğimiz gibi TypeScript bazı durumlarda tip çıkarımları yapmaz ve bunun yerine en hoşgörülü tür olan **any** tipini baz alır.
+
+<figure><img src=".gitbook/assets/Adsız (1).png" alt=""><figcaption></figcaption></figure>
+
+Bu çok kötü bir şey değildir. Özünde saf JavaScript'ten başka bir şey değildir.
+
+Ancak, sık sık **any** kullanmak, TypeScript kullanma amacımıza ters düşer. Kodunuzda ne kadar tip tanımlaması yaparsanız TypeScript o kadar çok doğrulama yapar. Ki bu da daha az bug demektir.
+
+****[**noImplicitAny** ](https://www.typescriptlang.org/tsconfig#noImplicitAny)seçeneğine dönersek , bu seçenek ile kodumuzda bulunan her hangi bir değişkenin tipini direk **any** olarak tanımlamamışsak ve TypeScript bu kodun tipini **any** olarak tahmin ederse derleyici hata verir.
+
+Örneğin aşağıdaki kodu **tsc --noImplicitAny app.ts** şeklinde çalıştırdığımızda aşağıda göreceğimiz üzere derleyici hata vermez.
+
+<figure><img src=".gitbook/assets/Ekran görüntüsü 2022-11-08 235136.png" alt=""><figcaption></figcaption></figure>
+
+Fakat aynı kodda küçük bir değişiklik yaparsak (fonksiyon argümanlarının tip tanımlamalarını kaldırdığımıza dikkat edin) aşağıdaki gibi derleyicimiz hata verecektir.
+
+<figure><img src=".gitbook/assets/Adsız (2).png" alt=""><figcaption></figcaption></figure>
+
+Uzun lafın kısası ; bu seçeneği etkinleşitirmek, türü **dolaylı olarak** "**any**" anlaşılan (TypeScript'in tahmin ettiği) tüm değişkenlerde bir hata verir.
+
+### strictNullChecks
+
+TypeScript'te ön tanımlı gelen bir başka özellik de  , **null** ve **undefined** gibi değerlere herhangi bir tip atanabilir olmasıdır. Bu her ne kadar kod yazmayı kolaylaştırsa da **null** ve **undefined** değerlerini kontrol etmemek sayısız bug'a sebep olabilir. Bazıları ona [milyon dolarlık](https://www.youtube.com/watch?v=ybrQvs4x0Ps) hata der!
+
+[strictNullChecks ](https://www.typescriptlang.org/tsconfig#strictNullChecks)seçeneği bizi **null** ve **undefined** değerlerini kontrol etmeyi _unutup_ unutmadığımız konusunda endişelenmekten korur.
