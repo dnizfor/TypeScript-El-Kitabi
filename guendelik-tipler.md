@@ -53,6 +53,57 @@ Eğer bir değişkene spesifik bir tip tanımlamazsanız ve TypeScript değişke
 
 Genellikle böyle durumlardan sakınmak isteriz çünkü doğrudan tanımlanmamış **any** tipleri kodumuzda hatalara sebep olabilir. Bu durumlar için **noImplicitAny** seçeneğini kullanın. Bu seçenek kodunuzda doğrudan tanımlanmamış **any** tip bir veri olduğunda hata verecektir.
 
+### Değişkenlerde Tip Atamaları
+
+**const , let** veya **var** kullanarak bir değişken tanımladığınız zaman , isteğe bağlı olarak, değişkeninize bir tip atayabilirsiniz.
+
+```ts
+let myName: string = "Alice";
+//          ^^^^^^ tip ataması
+```
+
+> TypeScript , tiplerin solda yazıldığı `int x = 0; gibi` tip tanımlama sistemlerini kullanmaz. Tip tanımlamaları her zaman değerden sonra yapılır.
+
+Lakin çoğu zaman değişkeninize tip atamaya gerek yoktur. TypeScript değişkenin değerinden türü tahmin edebilir.
+
+```ts
+// tip atamasına gerek yok -- TypeScript 'myName' değişkeninin 
+//'string' veri tipinde olduğunu anlar.
+let myName = "Alice";
+```
+
+### Fonksiyonlar
+
+Fonksiyonlar JavaScript'te veri işlemenin en temel yoludur. TypeScript fonksiyonunuzun hem girdisine hem çıktısına tip ataması yapabilmenizi sağlar.
+
+#### Tip Fonksiyonu Parametreleri
+
+Fonksiyonunuzu tanımlarken fonksiyonunun alacağı her parametre için tip ataması yapabilirsiniz. Tip atamaları parametre isminden sonra yapılır.
+
+```ts
+// Parametreye tip ataması
+function greet(name: string) {
+  //                 ^^^^^^^^
+  console.log("Hello, " + name.toUpperCase() + "!!");
+}
+```
+
+Fonksiyona bir parametre girildiğinde artık bu parametrenin tipi kontrol edilecektir.
+
+<figure><img src=".gitbook/assets/aaa.png" alt=""><figcaption></figcaption></figure>
+
+> Parametrelerinize tip atamaları yapmasanız dahi TypeScript doğru sayıda argüman gönderilip gönderilmediğini kontrol eder.
+
+### Fonksiyonun Döndürdüğü Değere Tip Ataması Yapmak
+
+Ayrıca TypeScript'te fonksiyonun döndürdüğü değere de tip ataması yapabilirsiniz.
+
+```ts
+function getFavoriteNumber(): number {
+  //                        ^^^^^^^^
+  return 26;
+}
+```
 
 
-\
+
