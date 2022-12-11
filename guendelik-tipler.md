@@ -105,5 +105,23 @@ function getFavoriteNumber(): number {
 }
 ```
 
+Tabi bunu yapmanıza gerek yoktur çünkü TypeScript **return** ifadesinden bu fonksiyonun döndürdüğü değer tipini otomatik olarak tanımlayacaktır. Kullanıcılar belgeleme , karışıklıkları önleme veya diğer amaçlarla bu tanımlamayı yapmayı tercih edebilirler.
+
+### Anonim Fonksiyonlar
+
+Anonim fonksiyonlar düzenli fonksiyonlardan biraz daha farklıdır. TypeScript'in nasıl çalışacağını anlayabildiği bir fonksiyon oluşturulduğunuzda , bu fonksiyonun parametreleri için tipler otomatik olarak tanımlanır.
+
+İşte aşağıda bir örnek :&#x20;
+
+<figure><img src=".gitbook/assets/Ekran görüntüsü 2022-12-12 022816 (1).png" alt=""><figcaption></figcaption></figure>
+
+Yukarıda **s** değişkenine herhangi bir tip ataması yapmadık fakat Typescript, **forEach** fonksiyonu ve array'ın tipinden yola çıkarak **s** parametresinin alabileceği tipleri tahmin etmiştir.
+
+Bu işlem **bağlamsal tipleme (**_**contextual typing**_**)** olarak adlandırılır çünkü fonksiyonun içinde bulunduğu bağlam değişkenlerin hangi tipe sahip olması gerektiğini bildirir.
+
+Çıkarım kurallarına benzer şekilde, bunun nasıl gerçekleştiğini açıkça öğrenmeniz gerekmez, ancak bunun nasıl gerçekleştiğini anlamak, tür ek açıklamalarının ne zaman gerekli olmadığını fark etmenize yardımcı olabilir. Daha sonra, bir değerin içinde bulunduğu bağlamın onun türünü nasıl etkileyebileceğine dair daha fazla örnek göreceğiz.
+
+
+
 
 
