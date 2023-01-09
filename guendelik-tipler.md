@@ -121,7 +121,40 @@ Bu işlem **bağlamsal tipleme (**_**contextual typing**_**)** olarak adlandır�
 
 Çıkarım kurallarına benzer şekilde, bunun nasıl gerçekleştiğini açıkça öğrenmeniz gerekmez, ancak bunun nasıl gerçekleştiğini anlamak, tür ek açıklamalarının ne zaman gerekli olmadığını fark etmenize yardımcı olabilir. Daha sonra, bir değerin içinde bulunduğu bağlamın onun türünü nasıl etkileyebileceğine dair daha fazla örnek göreceğiz.
 
+### Obje Tipleri <a href="#object-types" id="object-types"></a>
 
+Karşılaşacağınız en yaygın türlerden biri de nesne türüdür. Bu, özellikleri olan herhangi bir JavaScript değerini ifade eder. Bir nesne tipi tanımlamak için, basitçe nesnenin özelliklerini ve tiplerini listeleriz.
+
+Örneğin, burada nesne alan bir fonksiyon var:
+
+```javascript
+function printCoord(pt: { x: number; y: number }) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+printCoord({ x: 3, y: 7 });
+```
+
+Biz burada fonksiyonumuzun parametremisini **sayı tipinde x ve y olmak üzere iki özelliği bulunan bir nesne tipi** olarak tanımladık. Özellikleri sıralarken **;** veya **,** kullanabilirsiniz.
+
+Ayrıca her özelliğin tip tanımlaması tamamen size bağlıdır. Eğer özel bir tip ataması yapmak istemezseniz **any** tipi olarak varsayılacaktır.
+
+### İsteğe Bağlı Özellikler
+
+TypeScript'te nesnelere opsiyonel özellikler tanımlayabiliriz. Bunu yapmak için, özellik adından sonra bir ? ekleyin:
+
+```javascript
+function printName(obj: { first: string; last?: string }) {
+  // ...
+}
+// Both OK
+printName({ first: "Bob" });
+printName({ first: "Alice", last: "Alisson" });
+```
+
+JavaScript'te, var olmayan bir özelliğe erişirseniz, hata almak yerine **undefined** değerini alırsınız. Bu nedenle, opsiyonel bir özelliği kullanmadan önce **undefined** olup olmadığını kontrol etmeniz gerekir. Aşağıda bir fonksiyonun parametresi olan **obj** nesnesinin opsiyonel bir özelliği toUpperCase methoduyla çağırılmış. Hata vereceği durumlar ve doğru kullanımı gösterilmiştir.
+
+<figure><img src=".gitbook/assets/1.png" alt=""><figcaption></figcaption></figure>
 
 
 
