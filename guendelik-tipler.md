@@ -156,5 +156,63 @@ JavaScript'te, var olmayan bir özelliğe erişirseniz, hata almak yerine **unde
 
 <figure><img src=".gitbook/assets/1.png" alt=""><figcaption></figcaption></figure>
 
+### Union Types (Çoklu Tipler) <a href="#union-types" id="union-types"></a>
+
+TypeScript'in tip sistemi, çok çeşitli operatörler kullanarak mevcut tiplerden yeni tipler oluşturmanıza olanak tanır. Artık bazı tiplerin nasıl yazılacağını bildiğimize göre, bunları ilginç şekillerde birleştirmeye başlamanın zamanı geldi.
+
+### _Union Type Tanımlama_&#x20;
+
+Tipleri kombine kullanmanın ilk yolu **Union** Tiplerdir. **Union ,** iki veya daha fazla türden oluşan ve bu türlerden herhangi biri ile kullanılabilen değerleri temsil eden bir türdür.&#x20;
+
+Hadi dizeler veya sayılar üzerinde işlem yapabilen bir fonksiyon yazalım:
+
+<figure><img src=".gitbook/assets/e.png" alt=""><figcaption></figcaption></figure>
+
+### Union Tiplerle Çalışmak
+
+Bir **union** türüyle eşleşen bir değer sağlamak kolaydır - **union** üyelerinden herhangi biriyle eşleşen bir tür sağlamanız yeterlidir. Peki bir **union** tipinde bir değeriniz varsa, bununla nasıl çalışırsınız?
+
+TypeScript, bir methodun kullanımına o methodun , **union'un** her üyesi için çağırılabilir olması durumunda izin verir. Örneğin, **string | number** union tipine sahipseniz, yalnızca **string tipi** üzerinde kullanılabilen methodları kullanamazsınız:
+
+<figure><img src=".gitbook/assets/aa.png" alt=""><figcaption></figcaption></figure>
+
+Çözüm ise çok basittir. Saf JavaScript'te olduğu gibi verinin tipini kontrol etmeli ve veri tipine göre işlem yapmalıyız:&#x20;
+
+```javascript
+function printId(id: number | string) {
+  if (typeof id === "string") {
+    // In this branch, id is of type 'string'
+    console.log(id.toUpperCase());
+  } else {
+    // Here, id is of type 'number'
+    console.log(id);
+  }
+}
+```
+
+Yukarıda **typeof** operatörü ile değişken tipini kontrol ettik ve bu tipe göre uygun işlemleri yaptık.
+
+Bu örnek ise **Array.isArray** methoduyla alakalı :
+
+```javascript
+function welcomePeople(x: string[] | string) {
+  if (Array.isArray(x)) {
+    // Here: 'x' is 'string[]'
+    console.log("Hello, " + x.join(" and "));
+  } else {
+    // Here: 'x' is 'string'
+    console.log("Welcome lone traveler " + x);
+  }
+}
+```
+
+Üyelerin ortak kullandığı methodlarda bu kontrolü yapmanıza gerek yoktur :&#x20;
+
+```javascript
+function getFirstThree(x: number[] | string) {
+  return x.slice(0, 3);
+}
+```
+
 
 
