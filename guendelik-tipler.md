@@ -121,7 +121,7 @@ Bu işlem **bağlamsal tipleme (**_**contextual typing**_**)** olarak adlandır�
 
 Çıkarım kurallarına benzer şekilde, bunun nasıl gerçekleştiğini açıkça öğrenmeniz gerekmez, ancak bunun nasıl gerçekleştiğini anlamak, tür ek açıklamalarının ne zaman gerekli olmadığını fark etmenize yardımcı olabilir. Daha sonra, bir değerin içinde bulunduğu bağlamın onun türünü nasıl etkileyebileceğine dair daha fazla örnek göreceğiz.
 
-### Obje Tipleri <a href="#object-types" id="object-types"></a>
+### Nesne Tipleri <a href="#object-types" id="object-types"></a>
 
 Karşılaşacağınız en yaygın türlerden biri de nesne türüdür. Bu, özellikleri olan herhangi bir JavaScript değerini ifade eder. Bir nesne tipi tanımlamak için, basitçe nesnenin özelliklerini ve tiplerini listeleriz.
 
