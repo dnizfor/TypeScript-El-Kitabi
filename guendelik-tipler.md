@@ -139,7 +139,7 @@ Biz burada fonksiyonumuzun parametremisini **sayı tipinde x ve y olmak üzere i
 
 Ayrıca her özelliğin tip tanımlaması tamamen size bağlıdır. Eğer özel bir tip ataması yapmak istemezseniz **any** tipi olarak varsayılacaktır.
 
-### İsteğe Bağlı Özellikler
+### Nesnelerde Opsiyonel Özellikler
 
 TypeScript'te nesnelere opsiyonel özellikler tanımlayabiliriz. Bunu yapmak için, özellik adından sonra bir ? ekleyin:
 
